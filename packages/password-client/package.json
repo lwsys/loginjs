@@ -1,0 +1,14 @@
+{
+  "name": "@loginjs/password-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "modern build",
+    "test": "jest",
+    "test:watch": "jest --watchAll"
+  },
+  "keywords": [],
+  "author": "lwsy",
+  "license": "ISC"
+}
