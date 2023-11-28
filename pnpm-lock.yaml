@@ -6,6 +6,7 @@ importers:
     specifiers:
       '@jest/globals': ^29.7.0
       '@loginjs/core': workspace:*
+      '@loginjs/db-memory': workspace:*
       '@loginjs/password-client': workspace:*
       '@loginjs/password-server': workspace:*
       '@loginjs/type': workspace:*
@@ -16,7 +17,8 @@ importers:
       jest: ^29.7.0
       typescript: ^5.3.2
     dependencies:
-      '@loginjs/core': link:packages/seed
+      '@loginjs/core': link:packages/core
+      '@loginjs/db-memory': link:packages/db-memory
       '@loginjs/password-client': link:packages/password-client
       '@loginjs/password-server': link:packages/password-server
       '@loginjs/type': link:packages/type
@@ -30,6 +32,9 @@ importers:
       typescript: 5.3.2
 
   packages/core:
+    specifiers: {}
+
+  packages/db-memory:
     specifiers: {}
 
   packages/password-client:

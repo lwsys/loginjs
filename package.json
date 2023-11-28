@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "npx only-allow pnpm"
+    "prepare": "npx only-allow pnpm",
+    "build-all": "pnpm -r run build"
   },
   "keywords": [],
   "author": "lwsy",
@@ -23,6 +24,7 @@
     "@loginjs/type": "workspace:*",
     "@loginjs/core": "workspace:*",
     "@loginjs/password-server": "workspace:*",
-    "@loginjs/password-client": "workspace:*"
+    "@loginjs/password-client": "workspace:*",
+    "@loginjs/db-memory": "workspace:*"
   }
 }

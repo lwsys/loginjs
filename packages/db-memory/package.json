@@ -1,5 +1,5 @@
 {
-  "name": "@loginjs/type",
+  "name": "@loginjs/db-memory",
   "version": "1.0.0",
   "description": "",
   "main": "dist/lib/index.js",

@@ -1,8 +1,17 @@
 import { User, BaseStorage, BaseStrategy } from "@loginjs/type";
+
+type GetClass<T extends abstract new (...args: any[]) => InstanceType<T>> =
+  new (...args: ConstructorParameters<T>) => InstanceType<T>;
+
 export class UserManager<T extends User> {
   strategyMap: Record<string, BaseStrategy> = {};
 
   constructor(private db: BaseStorage) {}
+
+  use(Strategy: GetClass<typeof BaseStrategy>) {
+    const item = new Strategy(this.db);
+    this.strategyMap[item.strategyName] = item;
+  }
 
   init() {}
 
