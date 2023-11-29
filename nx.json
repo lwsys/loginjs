@@ -10,10 +10,18 @@
       "cache": true
     },
     "test": {
-      "cache": true
+      "cache": false,
+      "dependsOn": [
+        "^build"
+      ]
     }
   },
   "affected": {
     "defaultBase": "dev"
+  },
+  "pluginsConfig": {
+    "@nx/js": {
+      "analyzeSourceFiles": true
+    }
   }
 }

@@ -8,6 +8,9 @@
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
+  "dependencies": {
+    "@loginjs/type": "*"
+  },
   "keywords": [],
   "author": "lwsy",
   "license": "ISC"

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "npx only-allow pnpm",
-    "build-all": "pnpm -r run build"
+    "test:core": "npx nx test @loginjs/core"
   },
   "keywords": [],
   "author": "lwsy",
