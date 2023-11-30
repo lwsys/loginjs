@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "seed": {
+      "factory": "./src/generators/seed/generator",
+      "schema": "./src/generators/seed/schema.json",
+      "description": "seed-generator generator"
+    }
+  }
+}

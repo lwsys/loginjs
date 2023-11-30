@@ -1,0 +1,59 @@
+{
+  "name": "dev-helper",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/dev-helper/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/dev-helper",
+        "main": "libs/dev-helper/src/index.ts",
+        "tsConfig": "libs/dev-helper/tsconfig.lib.json",
+        "assets": [
+          "libs/dev-helper/*.md",
+          {
+            "input": "./libs/dev-helper/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/dev-helper/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./libs/dev-helper",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./libs/dev-helper",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/dev-helper/**/*.ts",
+          "libs/dev-helper/package.json",
+          "libs/dev-helper/generators.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/dev-helper/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}
