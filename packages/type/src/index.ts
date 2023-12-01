@@ -1,43 +1,53 @@
-export abstract class BaseStorage<T extends User = User> {
-  constructor() {}
-  abstract createUser(user: T): Promise<void>;
-  abstract findUserByUid(uid: T["id"]): Promise<T>;
+type StorageConfig<ORM extends any> = {
+  orm: ORM;
+  getUid: (user: any) => string | number;
+};
+type UserID = string | number;
+export abstract class BaseStorage<ORM extends any, User> {
+  orm: ORM;
+  getUid: (user: User) => UserID;
+  constructor(config: StorageConfig<ORM>) {
+    this.orm = config.orm;
+    this.getUid = config.getUid;
+  }
+  abstract createUser(user: User): Promise<void>;
+  abstract findUserByUid(uid: UserID): Promise<User>;
   abstract setStrategyInfo<Strategy = Record<string, any>>(
     strategy: string,
-    uid: T["id"],
+    uid: UserID,
     record: Strategy
   ): Promise<void>;
 
   abstract getStrategyInfo<Strategy = Record<string, any>>(
     strategy: string,
-    uid: T["id"]
+    uid: UserID
   ): Promise<Strategy>;
 
   abstract updateStrategyInfo<Strategy = Record<string, any>>(
     strategy: string,
-    uid: T["id"],
+    uid: UserID,
     record: Strategy
   ): Promise<void>;
 }
 
-export abstract class BaseStrategy<T = unknown> {
+export abstract class BaseStrategy<User = unknown> {
   abstract strategyName: string;
-  abstract dbInform: Record<keyof T, dbInform>;
-  constructor(public db: BaseStorage<T & User>) {}
+  abstract dbInform: Record<keyof User, dbInform>;
+  constructor(public db: BaseStorage<any, User>) {}
 
   abstract validate(
-    userId: User["id"],
+    userId: UserID,
     props: Record<string, unknown>
   ): Promise<boolean>;
 
-  abstract created(user: T & User): Promise<void>;
+  abstract created(user: User): Promise<void>;
   abstract updated(
-    userId: User["id"],
+    userId: UserID,
     props: Record<string, unknown>
   ): Promise<void>;
 }
 export enum DbType {
-  String = "string",
+  String = 'string',
 }
 
 export interface dbInform {

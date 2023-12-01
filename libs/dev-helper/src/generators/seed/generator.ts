@@ -16,18 +16,25 @@ export async function seedGeneratorGenerator(
 ) {
   const fileName = names(options.name).fileName;
   const projectRoot = `packages/${fileName}`;
-  const scopeName = readJson(tree, "package.json").name.split('/')[0]
-  const packageName = `${scopeName}/${fileName}`
-  addDependenciesToPackageJson(tree, {
-    [packageName]: 'worksapces:*'
-  },{})
+  const scopeName = readJson(tree, 'package.json').name.split('/')[0];
+  const packageName = `@${scopeName}/${fileName}`;
+  addDependenciesToPackageJson(
+    tree,
+    {
+      [packageName]: 'workspace:*',
+    },
+    {}
+  );
   addProjectConfiguration(tree, options.name, {
     root: projectRoot,
     projectType: 'library',
     sourceRoot: `${projectRoot}/src`,
     targets: {},
   });
-  generateFiles(tree, path.join(__dirname, 'files'), projectRoot, {...options,scope:scopeName});
+  generateFiles(tree, path.join(__dirname, 'files'), projectRoot, {
+    ...options,
+    scope: scopeName,
+  });
   await formatFiles(tree);
 }
 

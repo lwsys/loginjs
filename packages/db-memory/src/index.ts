@@ -1,15 +1,17 @@
-import { BaseStorage, BaseStrategy, User } from "@loginjs/type";
+import { BaseStorage } from '@loginjs/type';
 
-export class MemoryStorage extends BaseStorage {
+export class MemoryStorage<User extends {}> extends BaseStorage<
+  Record<string, any>,
+  User
+> {
   db: Record<
-    User["id"],
+    string,
     User & {
       strategy: Record<string, any>;
     }
   > = {};
-
   async createUser(user: User): Promise<void> {
-    this.db[user.id] = { ...user, strategy: {} };
+    this.db[this.getUid(user)] = { ...user, strategy: {} };
   }
   async findUserByUid(uid: string | number): Promise<User> {
     return this.db[uid];
