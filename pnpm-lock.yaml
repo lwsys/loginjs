@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 importers:
 
   .:
@@ -50,7 +46,7 @@ importers:
         version: 2.41.0(typescript@5.3.2)
       '@modern-js/plugin-testing':
         specifier: ^2.41.0
-        version: 2.41.0(@types/node@18.7.1)(react-dom@18.2.0)(react@18.2.0)(ts-node@10.9.1)(typescript@5.3.2)
+        version: 2.41.0(@types/node@18.7.1)(ts-node@10.9.1)(typescript@5.3.2)
       '@nx/eslint':
         specifier: 17.1.3
         version: 17.1.3(@swc-node/register@1.6.8)(@swc/core@1.3.99)(@types/node@18.7.1)(eslint@8.46.0)(nx@17.1.3)
@@ -101,7 +97,7 @@ importers:
         version: 2.8.8
       ts-jest:
         specifier: ^29.1.0
-        version: 29.1.1(@babel/core@7.23.3)(@jest/types@29.6.3)(babel-jest@29.7.0)(jest@29.7.0)(typescript@5.3.2)
+        version: 29.1.1(jest@29.7.0)(typescript@5.3.2)
       ts-node:
         specifier: 10.9.1
         version: 10.9.1(@swc/core@1.3.99)(@types/node@18.7.1)(typescript@5.3.2)
@@ -111,6 +107,9 @@ importers:
 
   libs/dev-helper:
     dependencies:
+      '@nx/devkit':
+        specifier: 17.1.3
+        version: 17.1.3
       tslib:
         specifier: ^2.3.0
         version: 2.6.2
@@ -134,12 +133,6 @@ importers:
         version: link:../type
 
   packages/password-server:
-    dependencies:
-      '@loginjs/type':
-        specifier: '*'
-        version: link:../type
-
-  packages/seed:
     dependencies:
       '@loginjs/type':
         specifier: '*'
@@ -2793,7 +2786,7 @@ packages:
       - supports-color
     dev: true
 
-  /@modern-js/plugin-testing@2.41.0(@types/node@18.7.1)(react-dom@18.2.0)(react@18.2.0)(ts-node@10.9.1)(typescript@5.3.2):
+  /@modern-js/plugin-testing@2.41.0(@types/node@18.7.1)(ts-node@10.9.1)(typescript@5.3.2):
     resolution: {integrity: sha512-hnrOCPOEuL4L/fxxi1H/Pn1a4uX+RtduB7lhZ3gfO4Wt46st8iH/hEB4OAQb1GzP/1gRcuqZ6b6KXfychbm9Yg==}
     peerDependencies:
       '@modern-js/runtime': ^2.41.0
@@ -2813,13 +2806,13 @@ packages:
       '@modern-js-reduck/store': 1.1.11
       '@modern-js/babel-compiler': 2.41.0
       '@modern-js/plugin': 2.41.0
-      '@modern-js/prod-server': 2.41.0(react-dom@18.2.0)(react@18.2.0)
+      '@modern-js/prod-server': 2.41.0
       '@modern-js/types': 2.41.0
       '@modern-js/utils': 2.41.0
       '@rsbuild/babel-preset': 0.0.7
       '@swc/helpers': 0.5.3
       '@testing-library/jest-dom': 5.17.0
-      '@testing-library/react': 13.4.0(react-dom@18.2.0)(react@18.2.0)
+      '@testing-library/react': 13.4.0
       '@types/testing-library__jest-dom': 5.14.9
       babel-jest: 29.7.0(@babel/core@7.23.3)
       enhanced-resolve: 5.12.0
@@ -2827,8 +2820,6 @@ packages:
       jest: 29.7.0(@types/node@18.7.1)(ts-node@10.9.1)
       jest-environment-jsdom: 29.7.0
       path-to-regexp: 6.2.1
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
       supertest: 6.3.3
       ts-jest: 29.1.1(@babel/core@7.23.3)(@jest/types@29.6.3)(babel-jest@29.7.0)(jest@29.7.0)(typescript@5.3.2)
       yargs: 17.7.2
@@ -2854,11 +2845,11 @@ packages:
       '@swc/helpers': 0.5.3
     dev: true
 
-  /@modern-js/prod-server@2.41.0(react-dom@18.2.0)(react@18.2.0):
+  /@modern-js/prod-server@2.41.0:
     resolution: {integrity: sha512-4mZs/tD7VOg4jpyUR6tLPCVN8iqZbwVfnhC507jYej/tYYbhau51KjgtavinQoNpbItGNmRjKZAz2yCDa8553w==}
     dependencies:
       '@modern-js/plugin': 2.41.0
-      '@modern-js/runtime-utils': 2.41.0(react-dom@18.2.0)(react@18.2.0)
+      '@modern-js/runtime-utils': 2.41.0
       '@modern-js/server-core': 2.41.0
       '@modern-js/utils': 2.41.0
       '@swc/helpers': 0.5.3
@@ -2880,7 +2871,7 @@ packages:
       - supports-color
     dev: true
 
-  /@modern-js/runtime-utils@2.41.0(react-dom@18.2.0)(react@18.2.0):
+  /@modern-js/runtime-utils@2.41.0:
     resolution: {integrity: sha512-IerSAKZn67xk35/7DTvMkCySwCvDRXj5ZSj2NoUz+13dd/mzinLN+HxrtJrCNZPOmjBW6uPPFX92y3NnmkdHlA==}
     peerDependencies:
       react: '>=17.0.0'
@@ -2894,9 +2885,7 @@ packages:
       '@modern-js/utils': 2.41.0
       '@remix-run/router': 1.10.0
       '@swc/helpers': 0.5.3
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-router-dom: 6.17.0(react-dom@18.2.0)(react@18.2.0)
+      react-router-dom: 6.17.0
       serialize-javascript: 6.0.1
     dev: true
 
@@ -3062,6 +3051,14 @@ packages:
       fastq: 1.15.0
     dev: true
 
+  /@nrwl/devkit@17.1.3:
+    resolution: {integrity: sha512-8HfIY7P3yIYfQ/XKuHoq0GGLA9GpwWtBlI9kPQ0ygjuJ9BkpiGMtQvO6003zs7c6vpc2vNeG+Jmi72+EKvoN5A==}
+    dependencies:
+      '@nx/devkit': 17.1.3
+    transitivePeerDependencies:
+      - nx
+    dev: false
+
   /@nrwl/devkit@17.1.3(nx@17.1.3):
     resolution: {integrity: sha512-8HfIY7P3yIYfQ/XKuHoq0GGLA9GpwWtBlI9kPQ0ygjuJ9BkpiGMtQvO6003zs7c6vpc2vNeG+Jmi72+EKvoN5A==}
     dependencies:
@@ -3074,7 +3071,6 @@ packages:
     dependencies:
       '@nx/eslint-plugin': 17.1.3(@swc-node/register@1.6.8)(@swc/core@1.3.99)(@types/node@18.7.1)(@typescript-eslint/parser@6.13.1)(eslint-config-prettier@9.0.0)(eslint@8.46.0)(nx@17.1.3)(typescript@5.3.2)
     transitivePeerDependencies:
-      - '@babel/traverse'
       - '@swc-node/register'
       - '@swc/core'
       - '@swc/wasm'
@@ -3094,7 +3090,6 @@ packages:
     dependencies:
       '@nx/jest': 17.1.3(@swc-node/register@1.6.8)(@swc/core@1.3.99)(@types/node@18.7.1)(nx@17.1.3)(ts-node@10.9.1)(typescript@5.3.2)
     transitivePeerDependencies:
-      - '@babel/traverse'
       - '@swc-node/register'
       - '@swc/core'
       - '@swc/wasm'
@@ -3114,7 +3109,6 @@ packages:
     dependencies:
       '@nx/js': 17.1.3(@swc-node/register@1.6.8)(@swc/core@1.3.99)(@types/node@18.7.1)(nx@17.1.3)(typescript@5.2.2)
     transitivePeerDependencies:
-      - '@babel/traverse'
       - '@swc-node/register'
       - '@swc/core'
       - '@swc/wasm'
@@ -3131,7 +3125,6 @@ packages:
     dependencies:
       '@nx/js': 17.1.3(@swc-node/register@1.6.8)(@swc/core@1.3.99)(@types/node@18.7.1)(nx@17.1.3)(typescript@5.3.2)
     transitivePeerDependencies:
-      - '@babel/traverse'
       - '@swc-node/register'
       - '@swc/core'
       - '@swc/wasm'
@@ -3148,7 +3141,6 @@ packages:
     dependencies:
       '@nx/plugin': 17.1.3(@swc-node/register@1.6.8)(@swc/core@1.3.99)(@types/node@18.7.1)(eslint@8.46.0)(nx@17.1.3)(ts-node@10.9.1)(typescript@5.3.2)
     transitivePeerDependencies:
-      - '@babel/traverse'
       - '@swc-node/register'
       - '@swc/core'
       - '@swc/wasm'
@@ -3184,6 +3176,20 @@ packages:
       - '@swc/core'
       - debug
     dev: true
+
+  /@nx/devkit@17.1.3:
+    resolution: {integrity: sha512-1Is7ooovg3kdGJ5VdkePulRUDaMYLLULr+LwXgx7oHSW7AY2iCmhkoOE/vSR7DJ6rkey2gYx7eT1IoRoORiIaQ==}
+    peerDependencies:
+      nx: '>= 16 <= 18'
+    dependencies:
+      '@nrwl/devkit': 17.1.3
+      ejs: 3.1.9
+      enquirer: 2.3.6
+      ignore: 5.3.0
+      semver: 7.5.3
+      tmp: 0.2.1
+      tslib: 2.6.2
+    dev: false
 
   /@nx/devkit@17.1.3(nx@17.1.3):
     resolution: {integrity: sha512-1Is7ooovg3kdGJ5VdkePulRUDaMYLLULr+LwXgx7oHSW7AY2iCmhkoOE/vSR7DJ6rkey2gYx7eT1IoRoORiIaQ==}
@@ -3221,7 +3227,6 @@ packages:
       semver: 7.5.3
       tslib: 2.6.2
     transitivePeerDependencies:
-      - '@babel/traverse'
       - '@swc-node/register'
       - '@swc/core'
       - '@swc/wasm'
@@ -3249,7 +3254,6 @@ packages:
       tslib: 2.6.2
       typescript: 5.2.2
     transitivePeerDependencies:
-      - '@babel/traverse'
       - '@swc-node/register'
       - '@swc/core'
       - '@swc/wasm'
@@ -3277,7 +3281,6 @@ packages:
       resolve.exports: 1.1.0
       tslib: 2.6.2
     transitivePeerDependencies:
-      - '@babel/traverse'
       - '@swc-node/register'
       - '@swc/core'
       - '@swc/wasm'
@@ -3313,7 +3316,7 @@ packages:
       '@phenomnomnominal/tsquery': 5.0.1(typescript@5.2.2)
       babel-plugin-const-enum: 1.2.0(@babel/core@7.23.3)
       babel-plugin-macros: 2.8.0
-      babel-plugin-transform-typescript-metadata: 0.3.2(@babel/core@7.23.3)
+      babel-plugin-transform-typescript-metadata: 0.3.2
       chalk: 4.1.2
       columnify: 1.6.0
       detect-port: 1.5.1
@@ -3331,7 +3334,6 @@ packages:
       tsconfig-paths: 4.2.0
       tslib: 2.6.2
     transitivePeerDependencies:
-      - '@babel/traverse'
       - '@swc-node/register'
       - '@swc/core'
       - '@swc/wasm'
@@ -3363,7 +3365,7 @@ packages:
       '@phenomnomnominal/tsquery': 5.0.1(typescript@5.3.2)
       babel-plugin-const-enum: 1.2.0(@babel/core@7.23.3)
       babel-plugin-macros: 2.8.0
-      babel-plugin-transform-typescript-metadata: 0.3.2(@babel/core@7.23.3)
+      babel-plugin-transform-typescript-metadata: 0.3.2
       chalk: 4.1.2
       columnify: 1.6.0
       detect-port: 1.5.1
@@ -3381,7 +3383,6 @@ packages:
       tsconfig-paths: 4.2.0
       tslib: 2.6.2
     transitivePeerDependencies:
-      - '@babel/traverse'
       - '@swc-node/register'
       - '@swc/core'
       - '@swc/wasm'
@@ -3397,7 +3398,6 @@ packages:
     dependencies:
       '@nx/eslint': 17.1.3(@swc-node/register@1.6.8)(@swc/core@1.3.99)(@types/node@18.7.1)(eslint@8.46.0)(nx@17.1.3)
     transitivePeerDependencies:
-      - '@babel/traverse'
       - '@swc-node/register'
       - '@swc/core'
       - '@swc/wasm'
@@ -3446,6 +3446,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     optional: true
 
@@ -3454,6 +3455,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     optional: true
 
@@ -3462,6 +3464,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [glibc]
     requiresBuild: true
     optional: true
 
@@ -3470,6 +3473,7 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
     requiresBuild: true
     optional: true
 
@@ -3501,7 +3505,6 @@ packages:
       fs-extra: 11.1.1
       tslib: 2.6.2
     transitivePeerDependencies:
-      - '@babel/traverse'
       - '@swc-node/register'
       - '@swc/core'
       - '@swc/wasm'
@@ -3967,7 +3970,7 @@ packages:
       redent: 3.0.0
     dev: true
 
-  /@testing-library/react@13.4.0(react-dom@18.2.0)(react@18.2.0):
+  /@testing-library/react@13.4.0:
     resolution: {integrity: sha512-sXOGON+WNTh3MLE9rve97ftaZukN3oNf2KjDy7YTx6hcTO2uuLHuCGynMDhFwGw/jYf4OJ2Qk0i4i79qMNNkyw==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -3977,8 +3980,6 @@ packages:
       '@babel/runtime': 7.23.4
       '@testing-library/dom': 8.20.1
       '@types/react-dom': 18.2.17
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
     dev: true
 
   /@tokenizer/token@0.3.0:
@@ -4640,16 +4641,9 @@ packages:
       - supports-color
     dev: true
 
-  /babel-plugin-transform-typescript-metadata@0.3.2(@babel/core@7.23.3):
+  /babel-plugin-transform-typescript-metadata@0.3.2:
     resolution: {integrity: sha512-mWEvCQTgXQf48yDqgN7CH50waTyYBeP2Lpqx4nNWab9sxEpdXVeKgfj1qYI2/TgUPQtNFZ85i3PemRtnXVYYJg==}
-    peerDependencies:
-      '@babel/core': ^7
-      '@babel/traverse': ^7
-    peerDependenciesMeta:
-      '@babel/traverse':
-        optional: true
     dependencies:
-      '@babel/core': 7.23.3
       '@babel/helper-plugin-utils': 7.22.5
     dev: true
 
@@ -7543,13 +7537,6 @@ packages:
       is-unicode-supported: 0.1.0
     dev: true
 
-  /loose-envify@1.4.0:
-    resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
-    hasBin: true
-    dependencies:
-      js-tokens: 4.0.0
-    dev: true
-
   /lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
     dependencies:
@@ -8410,16 +8397,6 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /react-dom@18.2.0(react@18.2.0):
-    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
-    peerDependencies:
-      react: ^18.2.0
-    dependencies:
-      loose-envify: 1.4.0
-      react: 18.2.0
-      scheduler: 0.23.0
-    dev: true
-
   /react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
     dev: true
@@ -8427,7 +8404,7 @@ packages:
   /react-is@18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
 
-  /react-router-dom@6.17.0(react-dom@18.2.0)(react@18.2.0):
+  /react-router-dom@6.17.0:
     resolution: {integrity: sha512-qWHkkbXQX+6li0COUUPKAUkxjNNqPJuiBd27dVwQGDNsuFBdMbrS6UZ0CLYc4CsbdLYTckn4oB4tGDuPZpPhaQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -8435,26 +8412,16 @@ packages:
       react-dom: '>=16.8'
     dependencies:
       '@remix-run/router': 1.10.0
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-router: 6.17.0(react@18.2.0)
+      react-router: 6.17.0
     dev: true
 
-  /react-router@6.17.0(react@18.2.0):
+  /react-router@6.17.0:
     resolution: {integrity: sha512-YJR3OTJzi3zhqeJYADHANCGPUu9J+6fT5GLv82UWRGSxu6oJYCKVmxUcaBQuGm9udpWmPsvpme/CdHumqgsoaA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       react: '>=16.8'
     dependencies:
       '@remix-run/router': 1.10.0
-      react: 18.2.0
-    dev: true
-
-  /react@18.2.0:
-    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      loose-envify: 1.4.0
     dev: true
 
   /read-pkg-up@7.0.1:
@@ -8704,12 +8671,6 @@ packages:
     engines: {node: '>=v12.22.7'}
     dependencies:
       xmlchars: 2.2.0
-    dev: true
-
-  /scheduler@0.23.0:
-    resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
-    dependencies:
-      loose-envify: 1.4.0
     dev: true
 
   /semver-regex@4.0.5:
@@ -9373,6 +9334,39 @@ packages:
       yargs-parser: 21.1.1
     dev: true
 
+  /ts-jest@29.1.1(jest@29.7.0)(typescript@5.3.2):
+    resolution: {integrity: sha512-D6xjnnbP17cC85nliwGiL+tpoKN0StpgE0TeOjXQTU6MVCfsB4v7aW05CgQ/1OywGb0x/oy9hHFnN+sczTiRaA==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+    hasBin: true
+    peerDependencies:
+      '@babel/core': '>=7.0.0-beta.0 <8'
+      '@jest/types': ^29.0.0
+      babel-jest: ^29.0.0
+      esbuild: '*'
+      jest: ^29.0.0
+      typescript: '>=4.3 <6'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      '@jest/types':
+        optional: true
+      babel-jest:
+        optional: true
+      esbuild:
+        optional: true
+    dependencies:
+      bs-logger: 0.2.6
+      fast-json-stable-stringify: 2.1.0
+      jest: 29.7.0(@types/node@18.7.1)(ts-node@10.9.1)
+      jest-util: 29.7.0
+      json5: 2.2.3
+      lodash.memoize: 4.1.2
+      make-error: 1.3.6
+      semver: 7.5.4
+      typescript: 5.3.2
+      yargs-parser: 21.1.1
+    dev: true
+
   /ts-node@10.9.1(@swc/core@1.3.99)(@types/node@18.7.1)(typescript@5.2.2):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
@@ -9879,3 +9873,7 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

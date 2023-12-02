@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "npx only-allow pnpm",
     "test:core": "npx nx test @loginjs/core",
-    "genModule":"npx nx g dev-helper:seed"
+    "genModule": "npx nx g dev-helper:seed"
   },
   "keywords": [],
   "author": "lwsy",

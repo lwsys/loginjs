@@ -34,6 +34,7 @@ export async function seedGeneratorGenerator(
   generateFiles(tree, path.join(__dirname, 'files'), projectRoot, {
     ...options,
     scope: scopeName,
+    pkgName: packageName,
   });
   await formatFiles(tree);
 }
