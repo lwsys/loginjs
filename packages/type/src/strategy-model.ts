@@ -1,41 +1,52 @@
-enum TypeEnum {
+export enum TypeEnum {
   unknown,
   string,
-  number,
+  int,
   boolean,
   object,
 }
-abstract class BaseType<Type = unknown> {
-  type: TypeEnum = TypeEnum.unknown;
+export interface IBaseStrategy {
+  type: TypeEnum;
+  children?: Record<string, IBaseStrategy>;
+  defaultValue: unknown;
+  isUnique: boolean;
+}
+
+abstract class BaseType<Type = unknown> implements IBaseStrategy {
+  readonly type: TypeEnum = TypeEnum.unknown;
   defaultValue!: Type;
-  isOptional: boolean = false;
-  optional() {
-    this.isOptional = true;
-    return this as BaseType<Type | undefined>;
+  isUnique = false;
+  constructor(defaultValue: Type) {
+    this.defaultValue = defaultValue;
   }
+
   default(v: Type) {
     this.defaultValue = v;
+    return this;
+  }
+  setUnique(v: boolean) {
+    this.isUnique = v;
     return this;
   }
 }
 
 class StringType extends BaseType<string> {
   type = TypeEnum.string;
-  static create() {
-    return new StringType();
+  static create(d: string) {
+    return new StringType(d);
   }
 }
 
-class NumberType extends BaseType<number> {
-  type = TypeEnum.number;
-  static create() {
-    return new NumberType();
+class IntType extends BaseType<number> {
+  type = TypeEnum.int;
+  static create(d: number) {
+    return new IntType(d);
   }
 }
 class BooleanType extends BaseType<boolean> {
   type = TypeEnum.boolean;
-  static create() {
-    return new BooleanType();
+  static create(d: boolean) {
+    return new BooleanType(d);
   }
 }
 // reference from zod, why use generic can identify its types?
@@ -50,19 +61,31 @@ type GetObjectOutput<T> = {
 
 class ObjectType<T> extends BaseType<flatten<GetObjectOutput<T>>> {
   type = TypeEnum.object;
-  constructor(public struct: T) {
-    super();
+  constructor(public children: T) {
+    //TODO: use a better default value
+    super({} as any);
   }
-  static create<T>(struct: T) {
-    return new ObjectType(struct);
+  static create<T>(children: T) {
+    return new ObjectType(children);
   }
 }
 
 const string = StringType.create;
-const number = NumberType.create;
+const int = IntType.create;
 const boolean = BooleanType.create;
 const object = ObjectType.create;
 
-export type TypeOf<T> = T extends BaseType ? T['defaultValue'] : never;
+import decamelize from 'decamelize';
 
-export { string, number, boolean, object };
+export type TypeOf<T> = T extends BaseType ? T['defaultValue'] : never;
+export { string, int, boolean, object };
+export const getFieldName = (strategyName: string, field: string) =>
+  decamelize(`${strategyName}_${field}`, {
+    separator: '_',
+  });
+export const removeStrategyName = (strategyName: string, field: string) => {
+  return field.replace(strategyName + '_', '');
+};
+export const isMatchStrategy = (strategyName: string, field: string) => {
+  return field.startsWith(strategyName + '_');
+};

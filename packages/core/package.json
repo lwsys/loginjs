@@ -5,15 +5,33 @@
   "main": "dist/lib/index.js",
   "types": "dist/types/index.d.ts",
   "module": "dist/es/index.js",
+  "exports": {
+    ".": {
+      "require": "./dist/lib/index.js",
+      "default": "./dist/es/index.js"
+    }
+  },
+  "bin": {
+    "loginjs": "bin/index.js"
+  },
   "scripts": {
     "build": "modern build",
     "test": "jest",
-    "test:watch": "jest --watchAll"
+    "test:watch": "jest --watchAll",
+    "cli": "npm run build && ./bin/index.js"
   },
   "dependencies": {
-    "@loginjs/type": "*"
+    "@loginjs/type": "*",
+    "@swc/core": "^1.3.99",
+    "cac": "^6.7.14",
+    "inquirer": "^9.2.12",
+    "@loginjs/generator-prisma": "*",
+    "@loginjs/db-prisma": "*"
   },
   "keywords": [],
   "author": "lwsy",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7"
+  }
 }

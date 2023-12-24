@@ -3,7 +3,7 @@ type StorageConfig<ORM extends any> = {
   getUid: (user: any) => string | number;
 };
 type UserID = string | number;
-export abstract class BaseStorage<ORM extends any, User> {
+export abstract class BaseStorage<ORM extends any> {
   orm: ORM;
   getUid: (user: User) => UserID;
   constructor(config: StorageConfig<ORM>) {
@@ -11,29 +11,29 @@ export abstract class BaseStorage<ORM extends any, User> {
     this.getUid = config.getUid;
   }
   abstract createUser(user: User): Promise<void>;
-  abstract findUserByUid(uid: UserID): Promise<User>;
-  abstract setStrategyInfo<Strategy = Record<string, any>>(
+  abstract findUserByUid(uid: UserID): Promise<User | null>;
+  abstract setStrategyInfo(
     strategy: string,
     uid: UserID,
-    record: Strategy
+    record: Record<string, any>
   ): Promise<void>;
 
-  abstract getStrategyInfo<Strategy = Record<string, any>>(
+  abstract getStrategyInfo(
     strategy: string,
     uid: UserID
-  ): Promise<Strategy>;
+  ): Promise<Record<string, any> | null>;
 
-  abstract updateStrategyInfo<Strategy = Record<string, any>>(
+  abstract updateStrategyInfo(
     strategy: string,
     uid: UserID,
-    record: Strategy
+    record: Record<string, any>
   ): Promise<void>;
 }
 
-export abstract class BaseStrategy<User = unknown> {
-  abstract strategyName: string;
+export abstract class BaseStrategy {
+  static strategyName: string;
   abstract dbInform: Record<keyof User, dbInform>;
-  constructor(public db: BaseStorage<any, User>) {}
+  constructor(public db: BaseStorage<any>) {}
 
   abstract validate(
     userId: UserID,
@@ -56,6 +56,5 @@ export interface dbInform {
   validator?: (data: string) => boolean;
 }
 export interface User {
-  id: string | number;
-  username: string;
+  uid: any;
 }

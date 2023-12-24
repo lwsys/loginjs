@@ -1,0 +1,49 @@
+{
+  "name": "@loginjs/generator-prisma",
+  "description": "Provide a description about your generator",
+  "version": "1.0.0",
+  "main": "dist/lib/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/types/index.d.ts",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0"
+  },
+  "scripts": {
+    "start": "ts-node src/bin.ts",
+    "dev": "npx tsc -w",
+    "build": "modern build",
+    "prepack": "yarn build",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "gen": "npm run build &&cd example && npx prisma generate"
+  },
+  "dependencies": {
+    "@mrleebo/prisma-ast": "^0.8.0",
+    "@prisma/client": "5.6.0",
+    "@prisma/generator-helper": "5.6.0",
+    "@prisma/internals": "5.6.0",
+    "handlebars": "^4.7.8",
+    "jest-mock-fs": "^1.0.2",
+    "naming-style": "^1.0.1",
+    "prettier": "2.5.1"
+  },
+  "devDependencies": {
+    "@loginjs/password-server": "*",
+    "@types/node": "17.0.21",
+    "@types/prettier": "2.4.2",
+    "prisma": "5.6.0",
+    "typescript": "4.6.2"
+  },
+  "homepage": "Link to homepage or github readme here",
+  "repository": {
+    "type": "git",
+    "url": "Repo link here"
+  },
+  "author": "Your Name <Your Email>",
+  "keywords": [
+    "prisma",
+    "prisma2",
+    "generator"
+  ]
+}

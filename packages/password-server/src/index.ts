@@ -1,30 +1,30 @@
 import { BaseStrategy, dbInform, DbType, User, s } from '@loginjs/type';
 import model from './model';
 
-export class PasswordStrategy extends BaseStrategy<s.TypeOf<typeof model>> {
-  strategyName: string = 'password';
-  dbInform: Record<keyof s.TypeOf<typeof model>, dbInform> = {
+class Strategy extends BaseStrategy {
+  static strategyName: string = 'password';
+  dbInform: Record<string, dbInform> = {
     password: {
       type: DbType.String,
     },
   };
 
-  async validate(userId: User['id'], props: { password: string }) {
-    const res = await this.db.getStrategyInfo<s.TypeOf<typeof model>>(
-      this.strategyName,
-      userId
-    );
+  async validate(userId: User['uid'], props: { password: string }) {
+    const res = await this.db.getStrategyInfo(Strategy.strategyName, userId);
+    if (!res) {
+      return false;
+    }
     return res.password === props.password;
   }
 
   async created(user: User & s.TypeOf<typeof model>) {
-    await this.db.setStrategyInfo(this.strategyName, user.id, {
+    await this.db.setStrategyInfo(Strategy.strategyName, user.uid, {
       password: user.password,
     });
   }
 
   async updated(
-    userId: User['id'],
+    userId: User['uid'],
     props: {
       oldPassword: string;
       newPassword: string;
@@ -34,8 +34,9 @@ export class PasswordStrategy extends BaseStrategy<s.TypeOf<typeof model>> {
       return;
     }
 
-    await this.db.updateStrategyInfo(this.strategyName, userId, {
+    await this.db.updateStrategyInfo(Strategy.strategyName, userId, {
       password: props.newPassword,
     });
   }
 }
+export { model, Strategy };

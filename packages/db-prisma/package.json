@@ -1,5 +1,5 @@
 {
-  "name": "@loginjs/type",
+  "name": "@loginjs/db-prisma",
   "version": "1.0.0",
   "description": "",
   "main": "dist/lib/index.js",
@@ -10,10 +10,15 @@
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
+  "dependencies": {
+    "@loginjs/type": "*",
+    "@prisma/client": "^5.6.0"
+  },
   "keywords": [],
   "author": "lwsy",
   "license": "ISC",
-  "dependencies": {
-    "decamelize": "^5.0.0"
+  "devDependencies": {
+    "jest-mock-extended": "2.0.4",
+    "prisma": "^5.6.0"
   }
 }

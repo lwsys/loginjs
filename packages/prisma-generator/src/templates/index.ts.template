@@ -1,0 +1,41 @@
+import { BaseStorage } from '@loginjs/type'
+import { PrismaClient } from '@prisma/client'
+const USER_MODULE_NAME = 'user'
+const USER_ID_COLUMN_NAME = 'id'
+class PrismaStorage<User> extends BaseStorage<PrismaClient, User> {
+  async createUser(user: User): Promise<void> {
+    await this.orm[USER_MODULE_NAME].create({
+      data: {
+        ...user,
+      },
+    })
+  }
+  async findUserByUid(uid: string): Promise<User> {
+    return await this.orm[USER_MODULE_NAME].findUnique({
+      where: {
+        [USER_ID_COLUMN_NAME]: uid,
+      },
+    })
+  }
+  setStrategyInfo<Strategy = Record<string, any>>(
+    strategy: string,
+    uid: string | number,
+    record: Strategy,
+  ): Promise<void> {
+    // this.orm[]
+    throw new Error('Method not implemented.')
+  }
+  getStrategyInfo<Strategy = Record<string, any>>(
+    strategy: string,
+    uid: string | number,
+  ): Promise<Strategy> {
+    throw new Error('Method not implemented.')
+  }
+  updateStrategyInfo<Strategy = Record<string, any>>(
+    strategy: string,
+    uid: string | number,
+    record: Strategy,
+  ): Promise<void> {
+    throw new Error('Method not implemented.')
+  }
+}

@@ -1,0 +1,17 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id   String  @id @default(cuid())
+  name String?
+}
+
+model LoginStrategy {
+  id                Int     @id @default(autoincrement())
+  uid               String  @unique
+  password_password String?
+
+  @@index([uid, password_password])
+}
