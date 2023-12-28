@@ -1,8 +1,11 @@
+import type { MemoryCache } from 'cache-manager';
+
 type StorageConfig<ORM extends any> = {
   orm: ORM;
   getUid: (user: any) => string | number;
 };
 type UserID = string | number;
+export type BaseCache = MemoryCache;
 export abstract class BaseStorage<ORM extends any> {
   orm: ORM;
   getUid: (user: User) => UserID;
@@ -33,7 +36,12 @@ export abstract class BaseStorage<ORM extends any> {
 export abstract class BaseStrategy {
   static strategyName: string;
   abstract dbInform: Record<keyof User, dbInform>;
-  constructor(public db: BaseStorage<any>) {}
+  public db: BaseStorage<any>;
+  public cache: BaseCache;
+  constructor({ db, cache }: { db: BaseStorage<any>; cache: BaseCache }) {
+    this.db = db;
+    this.cache = cache;
+  }
 
   abstract validate(
     userId: UserID,

@@ -15,5 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "decamelize": "^5.0.0"
+  },
+  "devDependencies": {
+    "cache-manager": "^5.3.2"
   }
 }
